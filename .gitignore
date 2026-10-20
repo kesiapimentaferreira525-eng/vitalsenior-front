@@ -1,0 +1,10 @@
+/node_modules
+/dist
+/out-tsc
+/.angular
+/coverage
+.DS_Store
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea/
