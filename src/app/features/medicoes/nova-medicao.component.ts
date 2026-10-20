@@ -202,7 +202,7 @@ export class NovaMedicaoComponent {
         },
         error: (e) => {
           const erro = normalizarErro(e);
-          if (erro.status === 401 || erro.status === 403) return; // interceptor redireciona
+          if (erro.status === 401) return; // interceptor redireciona
           const extras = aplicarErrosNoFormulario(this.form, erro.campos);
           this.erroDeRede.set(erro.tipo === 'rede' || erro.tipo === 'servidor');
           this.erroGeral.set([erro.mensagem, ...extras].join(' '));

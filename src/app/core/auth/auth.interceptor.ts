@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 /**
  * - Adiciona `Authorization: Bearer <token>` nas chamadas privadas da API.
  * - Garante `Content-Type: application/json` em requisições com corpo.
- * - Em 401/403 de rota privada: limpa a sessão e volta ao login com aviso.
+ * - Em 401 de rota privada: limpa a sessão e volta ao login com aviso.
  */
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const auth = inject(AuthService);
@@ -34,7 +34,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         ehApi &&
         !ehPublica &&
         erro instanceof HttpErrorResponse &&
-        (erro.status === 401 || erro.status === 403)
+        erro.status === 401
       ) {
         auth.sair();
         router.navigate(['/login'], { queryParams: { motivo: 'sessao-expirada' } });

@@ -10,7 +10,7 @@ seguindo a *Especificação do Frontend v1.0*.
 ## Requisitos
 
 - Node.js 18.19+ (recomendado 20 ou 22)
-- Backend VitalSênior rodando (padrão `http://localhost:8080`)
+- Backend VitalSênior rodando (padrão `http://localhost:8081`)
 
 ## Rodando localmente
 

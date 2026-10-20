@@ -69,4 +69,14 @@ describe('authInterceptor', () => {
     expect(auth.sessao()).toBeNull();
     expect(router.navigate).toHaveBeenCalledWith(['/login'], { queryParams: { motivo: 'sessao-expirada' } });
   });
+
+  it('em 403 numa rota privada mantém a sessão e não volta ao login', () => {
+    entrar();
+    const router = TestBed.inject(Router);
+    spyOn(router, 'navigate').and.resolveTo(true);
+    http.get(`${BASE}/medicoes`).subscribe({ error: () => undefined });
+    ctrl.expectOne(`${BASE}/medicoes`).flush({}, { status: 403, statusText: 'Forbidden' });
+    expect(auth.sessao()).not.toBeNull();
+    expect(router.navigate).not.toHaveBeenCalled();
+  });
 });
